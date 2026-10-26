@@ -7,7 +7,7 @@ export const toSeatKey = ({ row, seat }: SeatDto): string => `${row}:${seat}`;
 export const toScheduleDto = (session: ScheduleEntity): ScheduleDto => ({
   id: session.id,
   daytime: session.daytime,
-  hall: String(session.hall),
+  hall: session.hall,
   rows: session.rows,
   seats: session.seats,
   price: session.price,
