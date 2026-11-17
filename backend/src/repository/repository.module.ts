@@ -16,16 +16,18 @@ const filmsRepositoryProvider = {
     TypeOrmModule.forRootAsync({
       inject: [CONFIG],
       useFactory: (config: AppConfig): TypeOrmModuleOptions => {
-        const { driver, url, username, password } = config.database;
+        const { driver, host, port, name, username, password } =
+          config.database;
         if (driver !== 'postgres') {
           throw new Error(`Неподдерживаемый DATABASE_DRIVER: ${driver}`);
         }
-        const connectionUrl = new URL(url);
-        connectionUrl.username = encodeURIComponent(username);
-        connectionUrl.password = encodeURIComponent(password);
         return {
           type: 'postgres',
-          url: connectionUrl.toString(),
+          host,
+          port,
+          database: name,
+          username,
+          password,
           entities: [Film, Schedule],
         };
       },

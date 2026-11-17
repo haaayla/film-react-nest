@@ -8,7 +8,9 @@ export const configProvider = {
     port: Number(configService.getOrThrow<string>('PORT')),
     database: {
       driver: configService.getOrThrow<string>('DATABASE_DRIVER'),
-      url: configService.getOrThrow<string>('DATABASE_URL'),
+      host: configService.getOrThrow<string>('DATABASE_HOST'),
+      port: Number(configService.getOrThrow<string>('DATABASE_PORT')),
+      name: configService.getOrThrow<string>('DATABASE_NAME'),
       username: configService.getOrThrow<string>('DATABASE_USERNAME'),
       password: configService.getOrThrow<string>('DATABASE_PASSWORD'),
     },
@@ -23,7 +25,9 @@ export interface AppConfig {
 
 export interface AppConfigDatabase {
   driver: string;
-  url: string;
+  host: string;
+  port: number;
+  name: string;
   username: string;
   password: string;
 }
