@@ -1,10 +1,11 @@
 import { SeatDto } from '../common/dto/seat.dto';
 import { FilmDto, ScheduleDto } from '../films/dto/films.dto';
-import { FilmEntity, ScheduleEntity } from './schemas/film.schema';
+import { Film } from './entities/film.entity';
+import { Schedule } from './entities/schedule.entity';
 
 export const toSeatKey = ({ row, seat }: SeatDto): string => `${row}:${seat}`;
 
-export const toScheduleDto = (session: ScheduleEntity): ScheduleDto => ({
+export const toScheduleDto = (session: Schedule): ScheduleDto => ({
   id: session.id,
   daytime: session.daytime,
   hall: session.hall,
@@ -14,7 +15,7 @@ export const toScheduleDto = (session: ScheduleEntity): ScheduleDto => ({
   taken: [...session.taken],
 });
 
-export const toFilmDto = (film: FilmEntity): FilmDto => ({
+export const toFilmDto = (film: Film): FilmDto => ({
   id: film.id,
   rating: film.rating,
   director: film.director,
